@@ -29,7 +29,7 @@ const Navbar = () => {
   }, [location]);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
+    { name: 'Home', path: '/portfolio' },
     { name: 'About', path: '/about' },
     { name: 'Projects', path: '/projects' },
     { name: 'Contact', path: '/contact' },
@@ -45,7 +45,7 @@ const Navbar = () => {
     <header className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'}`}>
       <div className="container mx-auto px-4 md:px-6">
         <nav className="flex justify-between items-center">
-          <NavLink to="/" className="text-xl font-bold gradient-text">
+          <NavLink to="/portfolio" className="text-xl font-bold gradient-text">
             Shivam<span className="text-blue-600">.</span>
           </NavLink>
 
