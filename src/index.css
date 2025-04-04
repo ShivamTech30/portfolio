@@ -95,6 +95,12 @@ body {
   right: 20px;
   z-index: 1000;
 }
+.question-text{
+  background-color: #e3e3e3;
+  border-radius: 15px;
+  padding: 10px;
+
+}
 
 
 .chat-toggle-icon {
@@ -113,7 +119,7 @@ body {
   margin-top: 50px;
   width: 95%;
   /* max-width: 900px; */
-  height: 80vh;
+  height: 90vh;
   margin: 100px auto;
   display: flex;
   flex-direction: column;
@@ -145,8 +151,14 @@ body {
   margin-bottom: 10px;
   border-radius: 8px;
   word-wrap: break-word;
+  background: #313030;
+    color: rgb(89, 228, 205);
 }
 
+.chat-message >pre >code{
+  display: inline-block;
+  white-space: break-spaces;
+}
 .chat-message.user {
   background-color: #007bff;
   color: white;
@@ -168,12 +180,13 @@ body {
   background: white;
 }
 
-.chat-footer input {
+.chat-footer textarea {
   flex: 1;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
+  resize: none;
 }
 
 .chat-footer button {
@@ -193,3 +206,4 @@ body {
 
 
 /* ai page css end */
+

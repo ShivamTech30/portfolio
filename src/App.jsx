@@ -21,10 +21,10 @@ function App() {
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route path="/portfolio" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/myai" element={<MyAi />} />
+              <Route path="/portfolio/about" element={<About />} />
+              <Route path="/portfolio/projects" element={<Projects />} />
+              <Route path="/portfolio/contact" element={<Contact />} />
+              <Route path="/portfolio/myai" element={<MyAi />} />
             </Routes>
           </Suspense>
         </AnimatePresence>

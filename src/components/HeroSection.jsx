@@ -40,7 +40,7 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link to="/contact" className="btn-primary flex items-center justify-center gap-2">
+              <Link to="/portfolio/contact" className="btn-primary flex items-center justify-center gap-2">
                 Get in Touch <ArrowRight size={18} />
               </Link>
               <a href={pfd}  download="shivam.pdf" className="btn-secondary flex items-center justify-center gap-2">
