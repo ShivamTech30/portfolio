@@ -10,6 +10,7 @@ const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Contact = lazy(() => import('./pages/Contact'));
+const MyAi = lazy(() => import('./pages/MyAi'));
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/projects" element={<Projects />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/myai" element={<MyAi />} />
             </Routes>
           </Suspense>
         </AnimatePresence>
