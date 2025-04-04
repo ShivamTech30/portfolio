@@ -29,8 +29,8 @@ const Home = () => {
       <TestimonialsSection />
 
       <div className="chat-icon">
-      <button className="chat-toggle-icon" onClick={() => navigation("/portfolio/myai")}>
-        💬 Chat
+      <button className="chat-toggle-icon" onClick={() => navigation("/portfolio/ai")}>
+        💬 Open Ai
       </button>
       
       
