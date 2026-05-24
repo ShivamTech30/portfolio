@@ -61,7 +61,7 @@ const SkillsSection = () => {
         <div className="text-center mb-12">
           <h2 className="section-title">My Skills</h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            With 3.5 years of experience, I've developed expertise in various technologies and tools
+            With 5 years of experience, I've developed expertise in various technologies and tools
             to build modern web applications.
           </p>
         </div>

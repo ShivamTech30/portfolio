@@ -32,7 +32,7 @@ const HeroSection = () => {
               Hi, I'm <span className="gradient-text">Shivam Sharma</span>
             </h1>
             <h2 className="text-xl md:text-2xl text-slate-700 mb-6">
-              React Developer with 3.5 years of experience
+              React Developer with 5 years of experience
             </h2>
             <p className="text-slate-600 mb-8 max-w-lg mx-auto lg:mx-0">
               I build modern, responsive web applications using React, Next.js, and other cutting-edge technologies.

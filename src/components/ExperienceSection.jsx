@@ -70,7 +70,7 @@ const ExperienceSection = () => {
         <div className="text-center mb-12">
           <h2 className="section-title">Work Experience</h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            Over the past 3.5 years, I've worked with various companies to deliver high-quality web applications.
+            Over the past 5 years, I've worked with various companies to deliver high-quality web applications.
           </p>
         </div>
 

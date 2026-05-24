@@ -4,7 +4,7 @@ import { Calendar, MapPin, Award, BookOpen, Code, Coffee } from 'lucide-react';
 
 const About = () => {
   const stats = [
-    { icon: <Calendar className="w-6 h-6 text-blue-600" />, value: '3.5+', label: 'Years Experience' },
+    { icon: <Calendar className="w-6 h-6 text-blue-600" />, value: '5+', label: 'Years Experience' },
     { icon: <Code className="w-6 h-6 text-blue-600" />, value: '7+', label: 'Projects Completed' },
     { icon: <Coffee className="w-6 h-6 text-blue-600" />, value: '1000+', label: 'Cups of Coffee' },
     // { icon: <Award className="w-6 h-6 text-blue-600" />, value: '15+', label: 'Certifications' },
@@ -59,7 +59,7 @@ const About = () => {
               I'm <span className="gradient-text">Shivam Sharma</span>, a passionate React Developer
             </h2>
             <p className="text-slate-700 mb-6">
-              With 3.5 years of experience in frontend development, I specialize in building modern, 
+              With 5 years of experience in frontend development, I specialize in building modern, 
               responsive, and user-friendly web applications. My journey in web development started 
               with HTML, CSS, and JavaScript, and I've since evolved to master React.js and Next.js.
             </p>

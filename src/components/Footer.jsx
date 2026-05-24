@@ -12,7 +12,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Shivam Sharma</h3>
             <p className="text-slate-300 mb-4">
-              React Developer with 3.5 years of experience creating modern, responsive web applications.
+              React Developer with 5 years of experience creating modern, responsive web applications.
             </p>
             <div className="flex space-x-4">
               <a href="https://github.com/shivamsharma" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-slate-300 hover:text-white transition-colors">
