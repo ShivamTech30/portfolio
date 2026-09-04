@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
 import ScrollToTop from './components/ScrollToTop';
+import ShivamAssistant from './components/ShivamAssistant';
 
 // Lazy load pages for better performance
 const Home = lazy(() => import('./pages/Home'));
@@ -15,7 +16,7 @@ const MyAi = lazy(() => import('./pages/MyAi'));
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
       <ScrollToTop />
       <Navbar />
       <main className="flex-grow">
@@ -42,6 +43,7 @@ function App() {
         </AnimatePresence>
       </main>
       <Footer />
+      <ShivamAssistant />
     </div>
   );
 }
