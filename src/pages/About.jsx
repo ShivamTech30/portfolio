@@ -44,7 +44,7 @@ const About = () => {
               <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-lg shadow-lg">
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 text-blue-600 mr-2" />
-                  <span className="font-medium">New Delhi, India</span>
+                  <span className="font-medium">Mumbai, India</span>
                 </div>
               </div>
             </div>
@@ -56,32 +56,36 @@ const About = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h2 className="text-3xl font-bold mb-6">
-              I'm <span className="gradient-text">Shivam Sharma</span>, a passionate React Developer
+              I'm <span className="gradient-text">Shivam Sharma</span>, a passionate Frontend Engineer
             </h2>
             <p className="text-slate-700 mb-6">
-              With 5 years of experience in frontend development, I specialize in building modern, 
-              responsive, and user-friendly web applications. My journey in web development started 
-              with HTML, CSS, and JavaScript, and I've since evolved to master React.js and Next.js.
+              With 5+ years of experience in frontend development, I specialize in building high-performance,
+              scalable React.js and Next.js applications across fintech, logistics, IoT, and hospitality tech.
             </p>
             <p className="text-slate-700 mb-6">
-              I'm passionate about creating clean, efficient code and delivering exceptional user 
-              experiences. I stay updated with the latest technologies and best practices to ensure 
-              that the applications I build are not only visually appealing but also performant and 
-              accessible.
+              Currently leading frontend delivery for payment and onboarding flows at a top-5 Indian asset manager,
+              with a strong focus on JS/TypeScript fundamentals, UI performance, monorepo architecture, and clean code.
             </p>
             <p className="text-slate-700 mb-8">
-              When I'm not coding, you can find me exploring new technologies, contributing to open-source 
-              projects, or sharing my knowledge through blog posts and community forums.
+              When I'm not coding, you can find me exploring fullstack/product engineering with Node.js and MongoDB,
+              contributing to open-source, or sharing knowledge across developer communities.
             </p>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <h3 className="font-semibold text-lg mb-2">Education</h3>
                 <div className="flex items-start mb-2">
-                  <BookOpen className="w-5 h-5 text-blue-600 mr-2 mt-1" />
+                  <BookOpen className="w-5 h-5 text-blue-600 mr-2 mt-1 flex-shrink-0" />
                   <div>
-                    <p className="font-medium">B.Tech</p>
-                    <p className="text-slate-600 text-sm">RTU, 2020</p>
+                    <p className="font-medium text-sm">B.Tech</p>
+                    <p className="text-slate-600 text-xs">Arya Institute of Engg. &amp; Tech, Jaipur (2015–2019)</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <BookOpen className="w-5 h-5 text-blue-600 mr-2 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="font-medium text-sm">Higher Secondary</p>
+                    <p className="text-slate-600 text-xs">St. Mary's Convent H.S. School (2015)</p>
                   </div>
                 </div>
               </div>

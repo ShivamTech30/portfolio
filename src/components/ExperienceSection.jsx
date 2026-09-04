@@ -10,7 +10,7 @@ const ExperienceSection = () => {
       company: 'NeoSOFT — Axis Mutual Fund (Client Engagement)',
       location: 'Mumbai, India',
       duration: 'Jun 2025 – Present',
-      description: 'Leading the frontend engineering team for Axis Mutual Fund across critical financial modules and digital investment journeys.',
+      description: 'Leading frontend delivery for Payment, Onboarding, STP, and Switch flows at a top-5 Indian asset manager.',
       responsibilities: [
         'Lead frontend development for Payment, Onboarding, STP, and Switch flows, mentoring and directing a team of 4–5 frontend developers, while owning architecture, technical documentation, and code review across the module.',
         'Take ambiguous, cross-functional requirements from product and backend teams and turn them into actionable technical plans, executing independently and making implementation recommendations.',
@@ -23,48 +23,45 @@ const ExperienceSection = () => {
     },
     {
       id: 2,
-      role: 'Senior React Developer',
-      company: 'TechSolutions Inc.',
-      location: 'New Delhi, India',
-      duration: 'Jan 2023 – May 2025',
-      description: 'Built scalable React applications, designed modular reusable frontend architectures, and guided junior developers.',
+      role: 'Frontend Developer',
+      company: 'Extern Labs',
+      location: 'Jaipur, India',
+      duration: 'Jul 2022 – May 2025',
+      description: 'Delivered multiple production-grade client projects across logistics, IoT, travel, hospitality, and fintech.',
       responsibilities: [
-        'Architected and developed complex React applications using Redux Toolkit and React Query',
-        'Implemented CI/CD pipelines and improved build performance by 40%',
-        'Mentored junior developers and conducted rigorous code reviews',
-        'Collaborated with UX/UI designers to implement highly responsive, accessible designs'
+        'NitroXpress: Built role-specific, highly usable dashboards with secure role-based access control for 5 distinct user types, plus in-app payment gateway and wallet system.',
+        'Tipco: Built live, performant IoT dashboards surfacing vibration, motor rotation, and pressure metrics with real-time WebSocket streaming.',
+        'NueGo (GreenCell Mobility): Built and maintained booking pages and delivered the complete GreenCell Mobility corporate website with responsive UI.',
+        'HarborBites: Built QR-to-order flow integrated with live Kitchen Display System and real-time WebSocket order/table-status updates.',
+        'Fintellir: Built data ingestion flows for client-specific Excel sheets and live stock ticker feeds.'
       ],
-      technologies: ['React.js', 'Redux Toolkit', 'Tailwind CSS', 'REST APIs']
+      technologies: ['React.js', 'Redux Toolkit (RTK)', 'TanStack Query', 'WebSocket', 'Tailwind CSS', 'Bootstrap']
     },
     {
       id: 3,
-      role: 'React Developer',
-      company: 'WebCraft Solutions',
-      location: 'Jaipur, India',
-      duration: 'Mar 2021 – Dec 2022',
-      description: 'Developed and maintained high-traffic web applications with an emphasis on performance optimization and responsive user experiences.',
+      role: 'Frontend Developer',
+      company: 'Maitretech Solutions',
+      location: 'Bhopal, India',
+      duration: 'Jun 2021 – Jun 2022',
+      description: 'Engineered AirPMO — a comprehensive construction management platform for multi-site project oversight.',
       responsibilities: [
-        'Built responsive web applications using React, Redux, and Tailwind CSS',
-        'Integrated RESTful APIs and implemented reliable state management solutions',
-        'Optimized application performance and reduced load times by 30%',
-        'Collaborated with backend developers to design and implement APIs'
+        'Built zone-based access management, restricting permissions by project area and role.',
+        'Implemented multi-role permission structures supporting varying levels of site responsibility and authority.',
+        'Collaborated with backend developers to integrate complex REST APIs and state synchronization.'
       ],
-      technologies: ['React', 'Redux', 'JavaScript (ES6+)', 'Bootstrap']
+      technologies: ['Next.js', 'React.js', 'Axios', 'Tailwind CSS', 'CSS']
     },
     {
       id: 4,
-      role: 'Frontend Developer',
-      company: 'Digital Innovators',
-      location: 'Jaipur, India',
-      duration: 'Aug 2020 – Feb 2021',
-      description: 'Created responsive websites and interactive UI components with modern JavaScript and React.',
+      role: 'Intern',
+      company: 'Reliance Jio — RF Macro Planning and Optimization',
+      location: 'India',
+      duration: 'Jun 2018 – Jul 2018',
+      description: 'Hands-on telecom architecture and network coverage analysis.',
       responsibilities: [
-        'Developed responsive websites using HTML5, CSS3, and JavaScript',
-        'Created interactive UI components with modern component patterns',
-        'Learned and implemented React.js for new client projects',
-        'Participated in daily stand-ups and agile sprint planning'
+        'Contributed to a network coverage and quality improvement project, gaining hands-on exposure to telecom architecture, frequency reuse, and signal optimization.'
       ],
-      technologies: ['HTML5', 'CSS3', 'JavaScript', 'React']
+      technologies: ['Telecom Architecture', 'RF Optimization', 'Data Analysis']
     }
   ];
 
@@ -93,7 +90,7 @@ const ExperienceSection = () => {
         <div className="text-center mb-12">
           <h2 className="section-title">Work Experience</h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            Over the past 5 years, I've worked with various companies and high-scale clients to deliver robust, high-quality web applications.
+            Over the past 5+ years, I've engineered production-grade React & Next.js web applications across high-scale fintech, IoT, logistics, and enterprise domains.
           </p>
         </div>
 
@@ -147,7 +144,7 @@ const ExperienceSection = () => {
                       <p className="text-slate-600 mb-4 text-sm leading-relaxed">{exp.description}</p>
                       
                       <div className="mb-4">
-                        <h4 className="font-semibold text-sm text-slate-800 mb-2">Key Contributions & Responsibilities:</h4>
+                        <h4 className="font-semibold text-sm text-slate-800 mb-2">Key Contributions &amp; Responsibilities:</h4>
                         <ul className="space-y-1.5 text-sm text-slate-600">
                           {exp.responsibilities.map((resp, i) => (
                             <li key={i} className="flex items-start">

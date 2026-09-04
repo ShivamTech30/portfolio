@@ -47,12 +47,45 @@ const ProjectsSection = ({ showHeader = true, className = '' }) => {
       id: 3,
       title: 'Tipco',
       description:
-        'It is a monitoring and handling platform for embedded devices. Developed and maintained frontend website using React JS.',
+        'A real-time IoT monitoring dashboard for embedded hardware. Built live, performant dashboards surfacing vibration, motor rotation, and pressure metrics from embedded devices with continuous WebSocket streaming.',
       image:
         'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000',
-      technologies: ['React', 'Redux Toolkit', 'Bootstrap', 'WebSocket'],
+      technologies: ['React.js', 'TanStack Query', 'WebSocket', 'Bootstrap'],
       category: 'react',
       liveLink: 'https://externlabs.shop/tipco/',
+    },
+    {
+      id: 4,
+      title: 'HarborBites',
+      description:
+        'A QR-based restaurant ordering and Kitchen Display System that replaced paper tickets. Built the QR-to-order customer flow with real-time order and table-status updates via WebSockets.',
+      image:
+        'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1000',
+      technologies: ['React.js', 'Redux Toolkit', 'WebSocket', 'Tailwind CSS'],
+      category: 'react',
+      liveLink: 'https://github.com/ShivamTech30',
+    },
+    {
+      id: 5,
+      title: 'Fintellir',
+      description:
+        'A stock analytics platform for ticker and portfolio data. Built data ingestion flows for client-specific Excel sheets and stock ticker feeds, ensuring accurate parsing and real-time display.',
+      image:
+        'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1000',
+      technologies: ['Next.js', 'Context API', 'Axios', 'Tailwind CSS'],
+      category: 'nextjs',
+      liveLink: 'https://github.com/ShivamTech30',
+    },
+    {
+      id: 6,
+      title: 'AirPMO',
+      description:
+        'A construction management platform for multi-site project oversight. Engineered zone-based access management and multi-role permission structures supporting varying levels of site responsibility and authority.',
+      image:
+        'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1000',
+      technologies: ['Next.js', 'Axios', 'Tailwind CSS', 'REST APIs'],
+      category: 'nextjs',
+      liveLink: 'https://github.com/ShivamTech30',
     },
   ];
 

@@ -1,38 +1,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Layout, Database, Server, Layers, Cpu } from 'lucide-react';
+import { Code, Layout, Database, Server, Layers, Cpu, Zap } from 'lucide-react';
 
 const SkillsSection = () => {
   const skillCategories = [
     {
-      title: 'Frontend',
+      title: 'Core Technologies',
       icon: <Layout className="w-6 h-6 text-blue-600" />,
-      skills: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'React.js', 'Next.js']
+      skills: ['React.js', 'Next.js', 'TypeScript', 'JavaScript (ES6+)', 'Redux / Redux Toolkit (RTK)', 'TanStack Query', 'Context API', 'HTML5 / CSS3']
     },
     {
-      title: 'Styling',
+      title: 'Styling & UI',
       icon: <Layers className="w-6 h-6 text-blue-600" />,
-      skills: ['CSS3', 'Tailwind CSS', 'Bootstrap', 'SASS/SCSS', 'Styled Components']
+      skills: ['Tailwind CSS', 'Bootstrap', 'Material UI (MUI)', 'Responsive Design', 'CSS Modules / SASS']
     },
     {
-      title: 'JavaScript',
-      icon: <Code className="w-6 h-6 text-blue-600" />,
-      skills: ['ES6+', 'TypeScript', 'jQuery', 'React Hooks', 'Context API']
-    },
-    {
-      title: 'State Management',
+      title: 'Data & APIs',
       icon: <Database className="w-6 h-6 text-blue-600" />,
-      skills: ['Redux', 'Redux Toolkit', 'Zustand', 'React Query', 'Context API']
+      skills: ['REST API', 'GraphQL', 'Axios & Fetch', 'WebSocket (Real-time)', 'Swagger API Docs']
     },
     {
-      title: 'Tools',
+      title: 'Performance & Architecture',
+      icon: <Zap className="w-6 h-6 text-blue-600" />,
+      skills: ['Code Splitting', 'Memoization & Optimization', 'Monorepo Architecture', 'Scalable Frontend Infra', 'Reduced Re-renders']
+    },
+    {
+      title: 'Tooling & Workflow',
       icon: <Cpu className="w-6 h-6 text-blue-600" />,
-      skills: ['Git', 'Webpack', 'Vite', 'npm/yarn', 'Jest/Testing Library']
+      skills: ['Git & GitHub', 'Webpack / Vite', 'Jira & Trello', 'Postman', 'AWS S3', 'VS Code']
     },
     {
-      title: 'Backend Knowledge',
+      title: 'Backend (Working Knowledge)',
       icon: <Server className="w-6 h-6 text-blue-600" />,
-      skills: ['RESTful APIs', 'Node.js basics', 'Express.js', 'Firebase', 'MongoDB']
+      skills: ['Node.js', 'MongoDB', 'REST API Development', 'Fullstack Coordination']
     }
   ];
 
@@ -59,10 +59,9 @@ const SkillsSection = () => {
     <section className="py-20 bg-slate-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
-          <h2 className="section-title">My Skills</h2>
+          <h2 className="section-title">Technical Skills</h2>
           <p className="text-slate-600 max-w-2xl mx-auto">
-            With 5 years of experience, I've developed expertise in various technologies and tools
-            to build modern web applications.
+            With 5+ years of production frontend experience, here are the technologies, tools, and practices I use to build fast, scalable web applications.
           </p>
         </div>
 
@@ -81,12 +80,12 @@ const SkillsSection = () => {
             >
               <div className="flex items-center mb-4">
                 {category.icon}
-                <h3 className="text-xl font-semibold ml-2">{category.title}</h3>
+                <h3 className="text-xl font-semibold ml-2 text-slate-900">{category.title}</h3>
               </div>
               <ul className="space-y-2">
                 {category.skills.map((skill, skillIndex) => (
-                  <li key={skillIndex} className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-2"></div>
+                  <li key={skillIndex} className="flex items-center text-sm text-slate-700">
+                    <div className="w-2 h-2 bg-blue-600 rounded-full mr-2 flex-shrink-0"></div>
                     <span>{skill}</span>
                   </li>
                 ))}
