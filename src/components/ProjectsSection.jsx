@@ -18,31 +18,27 @@ const ProjectsSection = ({ showHeader = true, className = '' }) => {
       category: 'react',
       liveLink: 'https://www.axismf.com/',
     },
-
     {
       id: 1,
+      title: 'Greencell',
+      description:
+        'An electric bus booking application for NueGo. Developed and maintained frontend of tour and travel modules and multiple core customer-facing booking pages. Also delivered the full GreenCell Mobility corporate website, focusing on responsive layout and clean UI across devices.',
+      image:
+        'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1000',
+      technologies: ['React.js', 'Tailwind CSS', 'Axios', 'Bootstrap'],
+      category: 'nextjs',
+      liveLink: 'https://greencellmobility.com/',
+    },
+    {
+      id: 2,
       title: 'Nitroxpress',
       description:
-        'Nitroxpress Logistic Services is a multipurpose solution for all shipment, transportation, and delivery requirements. It is a third-party logistics service provider offering custom solutions for unique shipping requirements.',
+        'Nitroxpress Logistic Services is a multipurpose solution for all shipment, transportation, and delivery requirements. A third-party logistics platform featuring role-based dashboards with secure access control for Admin, B2B, B2C, delivery staff, and internal employees with integrated payment gateway and wallet tracking.',
       image:
         'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1000',
       technologies: ['React', 'Redux Thunk', 'Bootstrap', 'Chart.js'],
       category: 'react',
-      liveLink: 'https://nitroxpress.in/',
     },
-
-    {
-      id: 2,
-      title: 'Greencell',
-      description:
-        'It is an electric bus booking application. Developed and maintained frontend of tour and travel modules and multiple pages. Also worked on GreenCell Mobility, which is part of NueGo.',
-      image:
-        'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=1000',
-      technologies: ['React.js', 'Tailwind CSS'],
-      category: 'nextjs',
-      liveLink: 'https://greencellmobility.com/',
-    },
-
     {
       id: 3,
       title: 'Tipco',
@@ -52,7 +48,6 @@ const ProjectsSection = ({ showHeader = true, className = '' }) => {
         'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000',
       technologies: ['React.js', 'TanStack Query', 'WebSocket', 'Bootstrap'],
       category: 'react',
-      liveLink: 'https://externlabs.shop/tipco/',
     },
     {
       id: 4,
@@ -63,7 +58,6 @@ const ProjectsSection = ({ showHeader = true, className = '' }) => {
         'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1000',
       technologies: ['React.js', 'Redux Toolkit', 'WebSocket', 'Tailwind CSS'],
       category: 'react',
-      liveLink: 'https://github.com/ShivamTech30',
     },
     {
       id: 5,
@@ -74,7 +68,6 @@ const ProjectsSection = ({ showHeader = true, className = '' }) => {
         'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1000',
       technologies: ['Next.js', 'Context API', 'Axios', 'Tailwind CSS'],
       category: 'nextjs',
-      liveLink: 'https://github.com/ShivamTech30',
     },
     {
       id: 6,
@@ -85,7 +78,6 @@ const ProjectsSection = ({ showHeader = true, className = '' }) => {
         'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1000',
       technologies: ['Next.js', 'Axios', 'Tailwind CSS', 'REST APIs'],
       category: 'nextjs',
-      liveLink: 'https://github.com/ShivamTech30',
     },
   ];
 
@@ -205,27 +197,30 @@ const ProjectsSection = ({ showHeader = true, className = '' }) => {
                   )}
                 </div>
 
-                <div className="flex justify-between">
-
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-blue-600 hover:text-blue-800 transition-colors"
-                  >
-                    <ExternalLink
-                      size={16}
-                      className="mr-1"
-                    />
-                    Live Demo
-                  </a>
+                <div className="flex justify-between items-center min-h-[24px]">
+                  {project.liveLink ? (
+                    <a
+                      href={project.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center text-blue-600 hover:text-blue-800 transition-colors font-medium text-sm"
+                    >
+                      <ExternalLink
+                        size={16}
+                        className="mr-1"
+                      />
+                      Live Demo
+                    </a>
+                  ) : (
+                    <div></div>
+                  )}
 
                   {project.githubLink && (
                     <a
                       href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center text-slate-700 hover:text-slate-900 transition-colors"
+                      className="flex items-center text-slate-700 hover:text-slate-900 transition-colors font-medium text-sm"
                     >
                       <Github
                         size={16}
