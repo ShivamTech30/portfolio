@@ -147,27 +147,25 @@ Feel free to ask a specific question!`;
 };
 
 export const fetchAIResponse = async (userQuery) => {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || 'AIzaSyA5hdlGKKy82-a8rK_jzUo0DUDhotKXkas';
+  // ✅ SECURE: API key is stored SERVER-SIDE in the Netlify function.
+  // The browser calls /api/gemini (our proxy), which forwards to Gemini with the hidden key.
+  // No API key is ever sent to or visible in the browser / network tab.
+  const PROXY_URL = '/api/gemini';
 
-  const promptWithContext = `${SYSTEM_CONTEXT}\n\nUser Question: ${userQuery}`;
-  const bodyContent = JSON.stringify({
-    contents: [{ parts: [{ text: promptWithContext }] }]
-  });
-
-  const headersList = {
-    'Accept': '*/*',
-    'Content-Type': 'application/json'
+  const bodyContent = {
+    contents: [
+      {
+        parts: [{ text: `${SYSTEM_CONTEXT}\n\nUser Question: ${userQuery}` }]
+      }
+    ]
   };
 
   try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        body: bodyContent,
-        headers: headersList
-      }
-    );
+    const response = await fetch(PROXY_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(bodyContent)
+    });
 
     if (response.ok) {
       const data = await response.json();
@@ -175,9 +173,10 @@ export const fetchAIResponse = async (userQuery) => {
       if (text) return text;
     }
   } catch (err) {
-    console.warn('Gemini API fetch failed, falling back to smart engine:', err);
+    console.warn('AI proxy unavailable, using built-in knowledge engine:', err.message);
   }
 
-  // Fallback to intelligent built-in knowledge engine
+  // Fallback to intelligent built-in knowledge engine (works even without API)
   return getSmartFallbackResponse(userQuery);
 };
+
