@@ -2,12 +2,12 @@
 // Optimized for smooth, natural voice selection with customizable voices, presets, and accents
 
 export const VOICE_PRESETS = [
-  { id: 'male-in', name: 'Shivam (Indian Male)', lang: 'en', gender: 'male', region: 'IN' },
   { id: 'female-in', name: 'Pooja (Indian Female)', lang: 'en', gender: 'female', region: 'IN' },
-  { id: 'male-global', name: 'Alex / Daniel (Global Male)', lang: 'en', gender: 'male', region: 'US' },
   { id: 'female-global', name: 'Samantha (Global Female)', lang: 'en', gender: 'female', region: 'US' },
-  { id: 'hindi-male', name: 'Madhav (Hindi Male)', lang: 'hi', gender: 'male', region: 'IN' },
   { id: 'hindi-female', name: 'Lekha (Hindi Female)', lang: 'hi', gender: 'female', region: 'IN' },
+  { id: 'male-in', name: 'Shivam (Indian Male)', lang: 'en', gender: 'male', region: 'IN' },
+  { id: 'male-global', name: 'Alex / Daniel (Global Male)', lang: 'en', gender: 'male', region: 'US' },
+  { id: 'hindi-male', name: 'Madhav (Hindi Male)', lang: 'hi', gender: 'male', region: 'IN' },
 ];
 
 export const cleanMarkdownForSpeech = (text) => {
@@ -86,7 +86,7 @@ export const getAvailableVoices = () => {
   return cachedVoices;
 };
 
-export const findVoiceByPresetOrName = (presetId = 'male-in', specificVoiceName = null, language = 'en') => {
+export const findVoiceByPresetOrName = (presetId = 'female-in', specificVoiceName = null, language = 'en') => {
   const voices = getAvailableVoices();
   if (!voices || voices.length === 0) return null;
 
@@ -101,12 +101,12 @@ export const findVoiceByPresetOrName = (presetId = 'male-in', specificVoiceName 
   if (isHindi) {
     const hindiVoices = voices.filter(v => v.lang.toLowerCase().includes('hi') || v.name.toLowerCase().includes('hindi'));
     if (hindiVoices.length > 0) {
-      if (presetId === 'hindi-male') {
-        const maleHi = hindiVoices.find(v => v.name.toLowerCase().includes('madhav') || v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('hemant'));
-        if (maleHi) return maleHi;
-      } else if (presetId === 'hindi-female') {
+      if (presetId === 'hindi-female' || presetId === 'female-in' || presetId === 'female-global') {
         const femaleHi = hindiVoices.find(v => v.name.toLowerCase().includes('lekha') || v.name.toLowerCase().includes('swara') || v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('neerja') || v.name.toLowerCase().includes('kalpana'));
         if (femaleHi) return femaleHi;
+      } else if (presetId === 'hindi-male') {
+        const maleHi = hindiVoices.find(v => v.name.toLowerCase().includes('madhav') || v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('hemant'));
+        if (maleHi) return maleHi;
       }
       return hindiVoices[0];
     }
@@ -117,6 +117,22 @@ export const findVoiceByPresetOrName = (presetId = 'male-in', specificVoiceName 
   const candidatePool = englishVoices.length > 0 ? englishVoices : voices;
 
   switch (presetId) {
+    case 'female-in': {
+      // Indian English Female (Veena on Mac, Microsoft Neerja/Heera, Google English India Female)
+      const veena = candidatePool.find(v => v.name.toLowerCase().includes('veena'));
+      if (veena) return veena;
+      const inFemale = candidatePool.find(v => (v.lang === 'en-IN' || v.lang.includes('en_IN')) && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('neerja') || v.name.toLowerCase().includes('heera')));
+      if (inFemale) return inFemale;
+      const samantha = candidatePool.find(v => v.name.toLowerCase().includes('samantha') || v.name.toLowerCase().includes('karen') || v.name.toLowerCase().includes('victoria') || v.name.toLowerCase().includes('zira') || v.name.toLowerCase().includes('female'));
+      if (samantha) return samantha;
+      break;
+    }
+    case 'female-global': {
+      // Global Female (Samantha, Karen, Victoria, Microsoft Zira, Google US Female)
+      const globalFemale = candidatePool.find(v => v.name.toLowerCase().includes('samantha') || v.name.toLowerCase().includes('karen') || v.name.toLowerCase().includes('victoria') || v.name.toLowerCase().includes('zira') || v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('ava'));
+      if (globalFemale) return globalFemale;
+      break;
+    }
     case 'male-in': {
       // Indian English Male (Rishi on Mac, Microsoft Prabhat/Ravi, Google English India Male)
       const rishi = candidatePool.find(v => v.name.toLowerCase().includes('rishi'));
@@ -127,33 +143,20 @@ export const findVoiceByPresetOrName = (presetId = 'male-in', specificVoiceName 
       if (anyMaleEn) return anyMaleEn;
       break;
     }
-    case 'female-in': {
-      // Indian English Female (Veena on Mac, Microsoft Neerja/Heera, Google English India Female)
-      const veena = candidatePool.find(v => v.name.toLowerCase().includes('veena'));
-      if (veena) return veena;
-      const inFemale = candidatePool.find(v => (v.lang === 'en-IN' || v.lang.includes('en_IN')) && (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('neerja') || v.name.toLowerCase().includes('heera')));
-      if (inFemale) return inFemale;
-      const anyFemaleEn = candidatePool.find(v => v.name.toLowerCase().includes('samantha') || v.name.toLowerCase().includes('karen') || v.name.toLowerCase().includes('victoria') || v.name.toLowerCase().includes('zira'));
-      if (anyFemaleEn) return anyFemaleEn;
-      break;
-    }
     case 'male-global': {
       // Global Male (Alex, Daniel, Microsoft David, Google US Male)
       const globalMale = candidatePool.find(v => v.name.toLowerCase().includes('daniel') || v.name.toLowerCase().includes('alex') || v.name.toLowerCase().includes('david') || v.name.toLowerCase().includes('male') || v.name.toLowerCase().includes('george') || v.name.toLowerCase().includes('oliver'));
       if (globalMale) return globalMale;
       break;
     }
-    case 'female-global': {
-      // Global Female (Samantha, Karen, Victoria, Microsoft Zira, Google US Female)
-      const globalFemale = candidatePool.find(v => v.name.toLowerCase().includes('samantha') || v.name.toLowerCase().includes('karen') || v.name.toLowerCase().includes('victoria') || v.name.toLowerCase().includes('zira') || v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('ava'));
-      if (globalFemale) return globalFemale;
-      break;
-    }
     default:
       break;
   }
 
-  // Fallback to first available candidate voice
+  // If looking for a female voice by default, try to pick any female voice
+  const fallbackFemale = candidatePool.find(v => v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('samantha') || v.name.toLowerCase().includes('veena') || v.name.toLowerCase().includes('zira') || v.name.toLowerCase().includes('karen'));
+  if (fallbackFemale) return fallbackFemale;
+
   return candidatePool[0] || voices[0] || null;
 };
 
@@ -169,7 +172,7 @@ export const stopSpeech = () => {
 export const speakText = (
   text, 
   { 
-    presetId = 'male-in', 
+    presetId = 'female-in', 
     voiceName = null, 
     language = 'en', 
     speed = 1.0, 
@@ -260,9 +263,9 @@ export const speakText = (
   speakNext();
 };
 
-export const testVoicePreview = (presetId, voiceName, language = 'en', speed = 1.0) => {
+export const testVoicePreview = (presetId = 'female-in', voiceName = null, language = 'en', speed = 1.0) => {
   const sampleText = language === 'hi' || presetId.startsWith('hindi')
-    ? 'नमस्ते! मैं शिवम का एआई असिस्टेंट हूँ। आप मुझसे कुछ भी पूछ सकते हैं।'
+    ? 'नमस्ते! मैं शिवम की एआई असिस्टेंट हूँ। आप मुझसे कुछ भी पूछ सकते हैं।'
     : "Hi there! I'm Shivam's AI Assistant. How can I help you today?";
   
   speakText(sampleText, { presetId, voiceName, language, speed });

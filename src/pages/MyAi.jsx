@@ -32,7 +32,10 @@ const SUGGESTED_PROMPTS_HI = [
 
 const MyAi = () => {
   const [language, setLanguage] = useState(() => localStorage.getItem('shivam_ai_lang') || 'en');
-  const [voicePreset, setVoicePreset] = useState(() => localStorage.getItem('shivam_ai_voice_preset') || 'male-in');
+  const [voicePreset, setVoicePreset] = useState(() => {
+    const saved = localStorage.getItem('shivam_ai_voice_preset');
+    return (saved && saved !== 'male-in') ? saved : 'female-in';
+  });
   const [selectedVoiceName, setSelectedVoiceName] = useState(() => localStorage.getItem('shivam_ai_voice_name') || '');
   const [speechSpeed, setSpeechSpeed] = useState(() => parseFloat(localStorage.getItem('shivam_ai_speed')) || 1.0);
   const [showVoiceSettings, setShowVoiceSettings] = useState(false);
@@ -41,7 +44,7 @@ const MyAi = () => {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "👋 Welcome! I'm **Shivam's AI Assistant**.\n\nI can answer any questions regarding Shivam's 5+ years of experience as a Lead Frontend Developer, his work at Axis Mutual Fund, his skills with React/Next.js/TypeScript, his projects, or help you connect with him directly.\n\n*(Audio enabled with custom voices & Hindi/English support)*"
+      content: "👋 Welcome! I'm **Shivam's AI Assistant**.\n\nI can answer any questions regarding Shivam's 5+ years of experience as a Lead Frontend Developer, his work at Axis Mutual Fund, his skills with React/Next.js/TypeScript, his projects, or help you connect with him directly.\n\n*(Audio enabled with 👩 female voice & Hindi/English support)*"
     }
   ]);
   const [input, setInput] = useState('');
