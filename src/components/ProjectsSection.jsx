@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import images1 from "../assets/image.png";
 
-const ProjectsSection = () => {
+const ProjectsSection = ({ showHeader = true, className = '' }) => {
   const [activeFilter] = useState('all');
   const [expanded, setExpanded] = useState({});
 
@@ -98,18 +98,19 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section className="py-20">
+    <section className={`${showHeader ? 'py-20' : 'pb-16 pt-2'} ${className}`}>
       <div className="container mx-auto px-4 md:px-6">
+        {showHeader && (
+          <div className="text-center mb-12">
+            <h2 className="section-title">My Projects</h2>
 
-        <div className="text-center mb-12">
-          <h2 className="section-title">My Projects</h2>
-
-          <p className="text-slate-600 max-w-2xl mx-auto">
-            Here are some of my recent projects. Each one was built
-            to solve a specific problem and demonstrates different
-            aspects of my skills.
-          </p>
-        </div>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Here are some of my recent projects. Each one was built
+              to solve a specific problem and demonstrates different
+              aspects of my skills.
+            </p>
+          </div>
+        )}
 
         <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"

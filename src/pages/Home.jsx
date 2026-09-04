@@ -29,12 +29,10 @@ const Home = () => {
       <TestimonialsSection />
 
       <div className="chat-icon">
-      <button className="chat-toggle-icon" onClick={() => navigation("/portfolio/ai")}>
-        💬 Open Ai
-      </button>
-      
-      
-    </div>
+        <button className="chat-toggle-icon" onClick={() => navigation("/ai")}>
+          💬 Open Ai
+        </button>
+      </div>
     </motion.div>
   );
 };

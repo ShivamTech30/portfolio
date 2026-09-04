@@ -20,7 +20,7 @@ const Projects = () => {
         </div>
       </div>
       
-      <ProjectsSection />
+      <ProjectsSection showHeader={false} />
     </motion.div>
   );
 };
