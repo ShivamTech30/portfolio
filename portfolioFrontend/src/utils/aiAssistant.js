@@ -147,10 +147,11 @@ Feel free to ask a specific question!`;
 };
 
 export const fetchAIResponse = async (userQuery) => {
-  // ✅ SECURE: API key is stored SERVER-SIDE in the Netlify function.
-  // The browser calls /api/gemini (our proxy), which forwards to Gemini with the hidden key.
-  // No API key is ever sent to or visible in the browser / network tab.
-  const PROXY_URL = '/api/gemini';
+  // ✅ SECURE: API key is stored SERVER-SIDE in our new Node.js Express backend.
+  // We send the request to our backend on port 5000, which forwards to Gemini.
+  const PROXY_URL = import.meta.env.VITE_API_URL 
+    ? `${import.meta.env.VITE_API_URL}/api/gemini` 
+    : 'http://localhost:5000/api/gemini';
 
   const bodyContent = {
     contents: [
