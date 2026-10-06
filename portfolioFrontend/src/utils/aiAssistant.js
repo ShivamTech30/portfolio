@@ -150,28 +150,21 @@ export const fetchAIResponse = async (userQuery) => {
   // ✅ SECURE: API key is stored SERVER-SIDE in our new Node.js Express backend.
   // We send the request to our backend on port 5000, which forwards to Gemini.
   const PROXY_URL = import.meta.env.VITE_API_URL 
-    ? `${import.meta.env.VITE_API_URL}/api/gemini` 
-    : 'http://localhost:5000/api/gemini';
+    ? `${import.meta.env.VITE_API_URL}/api/ai/chat` 
+    : 'http://localhost:5000/api/ai/chat';
 
-  const bodyContent = {
-    contents: [
-      {
-        parts: [{ text: `${SYSTEM_CONTEXT}\n\nUser Question: ${userQuery}` }]
-      }
-    ]
-  };
+  const finalPrompt = `${SYSTEM_CONTEXT}\n\nUser Question: ${userQuery}`;
 
   try {
     const response = await fetch(PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bodyContent)
+      body: JSON.stringify({ prompt: finalPrompt })
     });
 
     if (response.ok) {
       const data = await response.json();
-      const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (text) return text;
+      if (data.success && data.response) return data.response;
     }
   } catch (err) {
     console.warn('AI proxy unavailable, using built-in knowledge engine:', err.message);
