@@ -159,7 +159,7 @@ export const fetchAIResponse = async (userQuery) => {
     const response = await fetch(PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: finalPrompt })
+      body: JSON.stringify({ prompt: userQuery })
     });
 
     if (response.ok) {
