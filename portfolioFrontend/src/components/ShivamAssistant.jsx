@@ -45,7 +45,7 @@ const ShivamAssistant = () => {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "👋 Hi! I'm **Shivam's AI Assistant**.\n\nAsk me anything about Shivam's experience as a Lead Frontend Developer, technical skills with React/Next.js/TypeScript, projects, or how to get in touch!\n\n*(Audio enabled with 👩 female voice & Hindi/English support)*"
+      content: "Hey! I'm Shivam's AI assistant, ask me anything about his work."
     }
   ]);
   const [input, setInput] = useState('');
@@ -164,15 +164,76 @@ const ShivamAssistant = () => {
     }
   };
 
+  const streamIntervalRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (streamIntervalRef.current) {
+        clearInterval(streamIntervalRef.current);
+      }
+    };
+  }, []);
+
+  const streamResponseText = (fullText, targetIndex) => {
+    return new Promise((resolve) => {
+      if (!fullText) {
+        resolve();
+        return;
+      }
+
+      if (streamIntervalRef.current) {
+        clearInterval(streamIntervalRef.current);
+      }
+
+      const tokens = fullText.split(/(\s+)/);
+      let currentText = '';
+      let tokenIdx = 0;
+      const step = tokens.length > 80 ? 2 : 1;
+
+      streamIntervalRef.current = setInterval(() => {
+        if (tokenIdx < tokens.length) {
+          const endIdx = Math.min(tokenIdx + step, tokens.length);
+          for (let i = tokenIdx; i < endIdx; i++) {
+            currentText += tokens[i];
+          }
+          tokenIdx = endIdx;
+
+          setMessages((prev) => {
+            const next = [...prev];
+            if (next[targetIndex]) {
+              next[targetIndex] = { ...next[targetIndex], content: currentText };
+            }
+            return next;
+          });
+        } else {
+          clearInterval(streamIntervalRef.current);
+          streamIntervalRef.current = null;
+          setMessages((prev) => {
+            const next = [...prev];
+            if (next[targetIndex]) {
+              next[targetIndex] = { ...next[targetIndex], content: fullText };
+            }
+            return next;
+          });
+          resolve();
+        }
+      }, 20);
+    });
+  };
+
   const handleClearChat = () => {
     stopSpeech();
     setSpeakingIndex(null);
+    if (streamIntervalRef.current) {
+      clearInterval(streamIntervalRef.current);
+      streamIntervalRef.current = null;
+    }
     setMessages([
       {
         role: 'assistant',
         content: language === 'hi' 
-          ? "✨ चैट साफ़ कर दी गई है! आप शिवम के बारे में क्या जानना चाहते हैं?"
-          : "✨ Chat cleared! What would you like to know about Shivam?"
+          ? "नमस्ते! मैं शिवम का AI असिस्टेंट हूँ, उनके काम या प्रोजेक्ट्स के बारे में कुछ भी पूछ सकते हैं!"
+          : "Hey! I'm Shivam's AI assistant, ask me anything about his work."
       }
     ]);
   };
@@ -185,6 +246,12 @@ const ShivamAssistant = () => {
     setSpeakingIndex(null);
     setInput('');
 
+    // Extract last 8 messages as history for conversation memory
+    const history = messages.slice(-8).map(m => ({
+      role: m.role === 'assistant' ? 'assistant' : 'user',
+      text: m.content
+    }));
+
     const newMessages = [...messages, { role: 'user', content: userQuery }];
     setMessages(newMessages);
     setIsLoading(true);
@@ -194,12 +261,26 @@ const ShivamAssistant = () => {
         ? `${userQuery} (Please answer in natural, fluent Hindi / Hinglish)` 
         : userQuery;
 
-      const aiResponse = await fetchAIResponse(queryWithLang);
-      const updatedMessages = [...newMessages, { role: 'assistant', content: aiResponse }];
-      setMessages(updatedMessages);
+      const fetchStart = Date.now();
+      const aiResponse = await fetchAIResponse(queryWithLang, history);
+
+      // Add a 500-800ms typing indicator before the reply starts
+      const elapsed = Date.now() - fetchStart;
+      const minTypingDuration = 650;
+      if (elapsed < minTypingDuration) {
+        await new Promise((res) => setTimeout(res, minTypingDuration - elapsed));
+      }
+
+      setIsLoading(false);
+
+      // Append assistant placeholder message for progressive streaming
+      const assistantMessageIndex = newMessages.length;
+      setMessages([...newMessages, { role: 'assistant', content: '' }]);
+
+      // Progressively reveal the response text
+      await streamResponseText(aiResponse, assistantMessageIndex);
 
       // Auto-speak response with chosen voice
-      const newIndex = updatedMessages.length - 1;
       speakText(
         aiResponse,
         {
@@ -208,12 +289,13 @@ const ShivamAssistant = () => {
           language,
           speed: speechSpeed
         },
-        () => setSpeakingIndex(newIndex),
+        () => setSpeakingIndex(assistantMessageIndex),
         () => setSpeakingIndex(null),
         () => setSpeakingIndex(null)
       );
     } catch (error) {
       console.error('AI assistant error:', error);
+      setIsLoading(false);
       setMessages([
         ...newMessages,
         {
@@ -221,8 +303,6 @@ const ShivamAssistant = () => {
           content: "I'm available to answer any questions about Shivam! Feel free to ask about his experience at Axis Mutual Fund, skills, projects, or reach out at [shivamtech30@gmail.com](mailto:shivamtech30@gmail.com)."
         }
       ]);
-    } finally {
-      setIsLoading(false);
     }
   };
 

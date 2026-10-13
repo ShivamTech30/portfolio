@@ -22,6 +22,7 @@ Instructions:
 - Format your response with clear Markdown formatting (bullet points, bold text, code blocks when necessary).
 `;
 
+// NOTE: Keep getSmartFallbackResponse in sync with knowledge/shivam.md
 export const getSmartFallbackResponse = (query) => {
   const q = query.toLowerCase();
 
@@ -146,20 +147,21 @@ Shivam's resume is up-to-date with his latest **Lead Frontend Developer** experi
 Feel free to ask a specific question!`;
 };
 
-export const fetchAIResponse = async (userQuery) => {
-  // ✅ SECURE: API key is stored SERVER-SIDE in our new Node.js Express backend.
+export const fetchAIResponse = async (userQuery, history = []) => {
+  // ✅ SECURE: API key is stored SERVER-SIDE in our Node.js Express backend.
   // We send the request to our backend on port 5000, which forwards to Gemini.
   const PROXY_URL = import.meta.env.VITE_API_URL 
     ? `${import.meta.env.VITE_API_URL}/api/ai/chat` 
     : 'http://localhost:5000/api/ai/chat';
 
-  const finalPrompt = `${SYSTEM_CONTEXT}\n\nUser Question: ${userQuery}`;
-
   try {
     const response = await fetch(PROXY_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt: userQuery })
+      body: JSON.stringify({
+        prompt: userQuery,
+        history: Array.isArray(history) ? history.slice(-8) : []
+      })
     });
 
     if (response.ok) {
